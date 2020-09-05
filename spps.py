@@ -1,12 +1,12 @@
 #!/bin/env python3
-"""
-Simple Python Port Scanner: a small project to write a simple port scanner
-"""
+"""DocString: Simple port scanner made in python"""
 
 import socket
 
 
 def scanner(tcpHost, tcpPort):
+    """This uses a TCP connection to see if port is open
+    will info passed through tcpHost and tcpPort var"""
     try:
         _s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         _s.connect((tcpHost, int(tcpPort)))
@@ -18,9 +18,10 @@ def scanner(tcpHost, tcpPort):
 
 
 def main():
-    _hostIP = input('What IPv4 address:')
-    _portIP = input('What port:')
-    scanner(_hostIP, _portIP)
+    """Function for user input"""
+    _hostip = input('What IPv4 address:')
+    _portip = input('What port:')
+    scanner(_hostip, _portip)
 
-
-main()
+if __name__ == '__main__':
+    main()
