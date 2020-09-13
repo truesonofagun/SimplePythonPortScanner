@@ -2,6 +2,8 @@
 """DocString: Simple port scanner made in python"""
 
 import socket
+import argparse
+import sys
 
 
 def scanner(tcpHost, tcpPort):
@@ -17,11 +19,32 @@ def scanner(tcpHost, tcpPort):
         print('[-]%s/tcp closed' % tcpPort)
 
 
-def main():
-    """Function for user input"""
-    _hostip = input('What IPv4 address:')
-    _portip = input('What port:')
-    scanner(_hostip, _portip)
+def parserVar():
+    parser = argparse.ArgumentParser(description='Simple Python Port Scanner')
+    #parser.add_argument('-t', '--tcp', help='preform a TCP port scan', action='store_true', default=False)
+    #parser.add_argument('-u', '--udp', help='preform a UDP port scan', action='store_true', default=False)
+    parser.add_argument('-p', '--port', help='given port for scanning', type=int, default=None)
+    parser.add_argument('address', help='IPv4 address in format x.x.x.x:xx')
+
+    parsed = parser.parse_args()
+    if parsed.port is None:
+        try:
+            _address = parsed.address.split(':')[0]
+            _port = parsed.address.split(':')[1]
+            parsed.address = _address
+            parsed.port = _port
+        except IndexError:
+            print('Need to specify a port within the address as x.x.x.x:xx\n' +
+                    'or with the -p/--port argument')
+            sys.exit()
+        except e as Exception:
+            print(e)
+
+    return parsed
+
 
 if __name__ == '__main__':
-    main()
+    _c = parserVar()
+    _a = _c.address
+    _p = _c.port
+    scanner(_a, _p)
