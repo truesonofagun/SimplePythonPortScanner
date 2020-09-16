@@ -17,6 +17,6 @@ Also, port number can be sepecified with ':xx' at the end of the address
 
 Optional commands are:
 
-`-p/--port`	specify the port insteed of at the end
+`-p/--port`	specify the port insteed of at the end\
 `-u/--udp`	use a UDP scan insteed of default TCP (NOTE: they will provide\
 	the same results for now)
