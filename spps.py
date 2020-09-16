@@ -36,7 +36,8 @@ def scanner(_addr, _port, _udp):
 
 
 
-def parserVar():
+def parser_var():
+    """Command line syntax created, parsed, and returned"""
     parser = argparse.ArgumentParser(description='Simple Python Port Scanner')
     parser.add_argument('-u', '--udp', help='preform a UDP port scan insteed of default tcp scan', action='store_true', default=False)
     parser.add_argument('-p', '--port', help='given port for scanning', type=int, default=None)
@@ -60,5 +61,5 @@ def parserVar():
 
 
 if __name__ == '__main__':
-    _input = parserVar()
+    _input = parser_var()
     scanner(_input.address, _input.port, _input.udp)
