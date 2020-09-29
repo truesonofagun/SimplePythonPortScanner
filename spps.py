@@ -10,31 +10,31 @@ def scanner(_addr, _port, _udp):
     """This uses a TCP (or UDP if specified) connection to see if port is open
     will info passed through addr and port var"""
     if _udp is True:
-        try:
-            _s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            _s.connect((_addr, int(_port)))
-            print('[+]%s/udp open' % _addr)
-            _s.close()
+        _type = socket.SOCK_DGRAM
+        _name = 'udp'
 
-        except ConnectionRefusedError:
-            print('[-]%s/udp closed' % _port)
-
-        except Exception as _e:
-            print(_e)
     else:
-        try:
-            _s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            _s.connect((_addr, int(_port)))
-            print('[+]%s/tcp open' % _addr)
-            _s.close()
+        _type = socket.SOCK_STREAM
+        _name = 'tcp'
 
-        except ConnectionRefusedError:
-            print('[-]%s/tcp closed' % _port)
+    try:
+        _s = socket.socket(socket.AF_INET, _type)
+        _s.connect((_addr, int(_port)))
+        print('[+]%s:%s/%s open' % (_addr,_port,_name))
+        _s.close()
 
-        except Exception as _e:
-            print(_e)
+    except KeyboardInterrupt:
+        sys.exit()
 
+    except ConnectionRefusedError:
+        print('[-]%s:%s/%s closed' % (_addr,_port,_name))
 
+    except ConnectionAbortedError:
+        print('The connection has been severed')
+        sys.exit()
+
+    except OSError as _e:
+        print(_e)
 
 def parser_var():
     """Command line syntax created, parsed, and returned"""
