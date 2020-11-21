@@ -4,7 +4,19 @@
 import socket
 import sys
 
-def scanner(_addr, _port, _udp):
+def scanner(_addr, _portstart, _portend, _udp):
+    """this passes the paramiters into the scan_logic and enumerate port in a given
+    range based if the _portend is not None"""
+    if _portend is None:
+        scan_logic(_addr, _portstart, _udp)
+    else:
+        _portend = int(_portend) + 1
+        for i in range(int(_portstart), _portend):
+            scan_logic(_addr, i, _udp)
+
+
+
+def scan_logic(_addr, _port, _udp):
     """This uses a TCP (or UDP if specified) connection to see if port is open
     will info passed through addr and port var"""
     if _udp is True:
@@ -33,5 +45,3 @@ def scanner(_addr, _port, _udp):
 
     except OSError as _e:
         print(_e)
-
-

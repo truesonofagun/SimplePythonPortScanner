@@ -1,3 +1,7 @@
 # symbolic links #
 ##################
 sppscan
+
+# python cache #
+################
+src/__pycache__/*
