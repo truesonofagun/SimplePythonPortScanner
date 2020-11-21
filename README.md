@@ -2,18 +2,24 @@
 
 Another python port scanner, nothing special about this one
 
-run with
-`python3 ./spps.py`
+Install with install.sh debian/red hat based distros
+`sudo ./install.sh`
+
+Requirements
+`python3`
+`python3-pip`
+`python3-setuptools`
+`argparse`
 
 ### Syntax
 
 Specify the address by add in the same line as spps.py
 
-`python3 ./spps.py ipv4_address`
+`./sppscan ipv4_address`
 
 Also, port number can be sepecified with ':xx' at the end of the address
 
-`python3 ./spps.py ipv4_address:port_number`
+`python3 ./sppscan ipv4_address:port_number`
 
 Optional commands are:
 
