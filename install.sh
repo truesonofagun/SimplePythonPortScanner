@@ -4,10 +4,10 @@
 #Spps Setup Script
 #-------------------------
 
-dnf_var=$(which dnf)
-aptget_var=$(which apt-get)
-python3_var=$(which python3)
-pip3_var=$(which pip3)
+dnf_var=$(command -v dnf)
+aptget_var=$(command -v apt-get)
+python3_var=$(command -v python3)
+pip3_var=$(command -v pip3)
 
 if [ "$EUID" -ne 0 ]; then
 	printf "Please run as root\n"
