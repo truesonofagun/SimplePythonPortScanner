@@ -36,7 +36,7 @@ else
 fi
 
 if [ ! -e "./sppscan" ]; then
-	ln -s "./src/core.py" "./sppscan"
+	ln -s "./src/__main__.py" "./sppscan"
 fi
 
 printf "\n\n# Start Simple Python Port Scanner with ./sppscan\n"
